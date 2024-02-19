@@ -1,17 +1,17 @@
 import Navbar from '@/Components/Navbar'
+import { usePage } from '@inertiajs/react'
 import React from 'react'
 
 
-export default function Home() {
+export default function Home(props) {
+    const { posts, prices } = usePage().props;
+    console.log(posts);
+    console.log(prices);
   return (
     <>
         <div>
   {/*PreLoader*/}
-  <div className="loader">
-    <div className="loader-inner">
-      <div className="circle" />
-    </div>
-  </div>
+  
   {/*PreLoader Ends*/}
   {/* header */}
   <Navbar />
@@ -107,17 +107,20 @@ export default function Home() {
         </div>
       </div>
       <div className="row">
+      {posts.map(({title,body,photo}) => (
         <div className="col-lg-4 col-md-6 text-center">
           <div className="single-product-item">
             <div className="product-image">
-              <a href="single-product.html"><img src="assets/img/products/product-img-1.jpg" alt /></a>
+              <a href="single-product.html"><img src={photo} alt /></a>
             </div>
-            <h3>Strawberry</h3>
+            <h3>{title}</h3>
+            <p>{body}</p>
             <p className="product-price"><span>Per Kg</span> 85$ </p>
             <a href="cart.html" className="cart-btn"><i className="fas fa-shopping-cart" /> Add to Cart</a>
           </div>
         </div>
-        <div className="col-lg-4 col-md-6 text-center">
+        ))}
+        {/* <div className="col-lg-4 col-md-6 text-center">
           <div className="single-product-item">
             <div className="product-image">
               <a href="single-product.html"><img src="assets/img/products/product-img-2.jpg" alt /></a>
@@ -136,7 +139,7 @@ export default function Home() {
             <p className="product-price"><span>Per Kg</span> 35$ </p>
             <a href="cart.html" className="cart-btn"><i className="fas fa-shopping-cart" /> Add to Cart</a>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   </div>
